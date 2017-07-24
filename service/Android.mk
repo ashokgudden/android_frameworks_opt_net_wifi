@@ -60,7 +60,9 @@ LOCAL_JAVA_LIBRARIES := \
 	bouncycastle \
 	conscrypt \
 	jsr305 \
-	services
+	services \
+	org.lineageos.platform.internal
+
 LOCAL_STATIC_JAVA_LIBRARIES := \
 	android.hardware.wifi-V1.0-java \
 	android.hardware.wifi.supplicant-V1.0-java
