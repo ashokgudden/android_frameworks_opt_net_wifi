@@ -139,7 +139,7 @@ LOCAL_SRC_FILES := $(filter-out $(call all-java-files-under, \
           java/com/android/server/wifi/nan),$(LOCAL_SRC_FILES))
 endif
 
-LOCAL_JAVA_LIBRARIES := bouncycastle conscrypt services
+LOCAL_JAVA_LIBRARIES := bouncycastle conscrypt services org.cyanogenmod.platform
 LOCAL_REQUIRED_MODULES := services
 LOCAL_MODULE_TAGS :=
 LOCAL_MODULE := wifi-service
