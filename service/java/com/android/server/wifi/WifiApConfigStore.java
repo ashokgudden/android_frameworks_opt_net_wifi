@@ -36,6 +36,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.UUID;
 
 /**
@@ -44,6 +45,9 @@ import java.util.UUID;
 public class WifiApConfigStore {
 
     private static final String TAG = "WifiApConfigStore";
+
+    private static final int RAND_SSID_INT_MIN = 1000;
+    private static final int RAND_SSID_INT_MAX = 9999;
 
     private static final String DEFAULT_AP_CONFIG_FILE =
             Environment.getDataDirectory() + "/misc/wifi/softap.conf";
@@ -213,7 +217,7 @@ public class WifiApConfigStore {
     private WifiConfiguration getDefaultApConfiguration() {
         WifiConfiguration config = new WifiConfiguration();
         config.SSID = mContext.getResources().getString(
-                R.string.wifi_tether_configure_ssid_default);
+                R.string.wifi_tether_configure_ssid_default) + "_" + getRandomIntForDefaultSsid();
         int wifiApSecurityType = mContext.getResources().getInteger(
                 R.integer.wifi_hotspot_security_type);
         config.allowedKeyManagement.set(wifiApSecurityType);
@@ -226,5 +230,10 @@ public class WifiApConfigStore {
         }
         config.wifiApInactivityTimeout = 0;
         return config;
+    }
+
+    private int getRandomIntForDefaultSsid() {
+        Random random = new Random();
+        return random.nextInt((RAND_SSID_INT_MAX - RAND_SSID_INT_MIN) + 1) + RAND_SSID_INT_MIN;
     }
 }
